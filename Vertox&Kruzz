@@ -1,102 +1,73 @@
 import os, time, sys, socket, subprocess
 
-# ألوان التنين (الأحمر والأسود)
+# الألوان: أحمر ناري وأسود هيبة
 R, W, Y, G = '\033[1;31m', '\033[1;37m', '\033[1;33m', '\033[1;32m'
-B = '\033[0;30m' 
 RESET = '\033[0m'
 
-def auto_installer():
-    """هذه الدالة تنصب كل المتطلبات تلقائياً"""
-    print(f"{Y}[*] Checking dependencies...{W}")
+def setup():
+    """تنصيب المتطلبات تلقائياً"""
+    print(f"{R}[*] DRAGOON System Booting...{W}")
     try:
         import qrcode
-        from PIL import Image
     except ImportError:
-        print(f"{R}[!] Missing libraries. Installing now...{W}")
+        print(f"{Y}[!] Installing Dragon Scales (Libraries)...{W}")
         os.system('pip install qrcode[pil] pillow --quiet')
-        print(f"{G}[+] Installation complete!{W}")
-        time.sleep(1)
+        print(f"{G}[+] Ready!{W}")
 
-# تشغيل الفحص فوراً
-auto_installer()
+setup()
 import qrcode
-
-def get_ip():
-    s = socket.socket(socket.AF_INET, socket.SOCK_DGRAM)
-    try: s.connect(('8.8.8.8', 80)); IP = s.getsockname()[0]
-    except: IP = '127.0.0.1'
-    finally: s.close()
-    return IP
 
 def banner():
     os.system('clear' if os.name == 'posix' else 'cls')
-    print(f"{R}          DRAGON TOOL - THE FINAL OVERRIDE")
-    print(f"{R}                 v7.5 [AUTO-LOADER]")
+    print(f"{R}          <<< DRAGOON TOOL - THE FINAL FIRE >>>")
+    print(f"{R}                 DEVELOPED BY VORTEX & KRUZZ")
+    # شكل التنين الجديد
     print(f"""{R}
-              ^    ^
-             / \  / \\
-            /   \/   \\
-           /          \\
-          {W}          {R}  /      \\
-    {Y}  (  (  (  (  (  ( {R}  O  O  {Y} )  )  )  )  )  )
-    {Y}   < < < < < < < < {R}  \__/  {Y} > > > > > > > >
-    {Y}    ( ( ( ( ( ( ( ( {R} /    \ {Y} ) ) ) ) ) ) ) )
-    {R}      DRAGON FIRE: {Y}>>>>> 🔥🔥🔥🔥🔥 >>>>>{RESET}
+             {W}      / \      / \ {R}
+            {W}     /   \____/   \{R}
+            {W}    /  {R}O      O{W}    \{R}
+            {W}    \    {Y}vvvv{W}      /{R}
+             {W}    \  {Y}^^^^^ {W}    /{R}
+        {Y}   >>>>> {R}DRAGOON IS BREATHING FIRE {Y} >>>>>{RESET}
     """)
     print(f"{R}------------------------------------------------------------")
-    print(f"{W}Devs: {R}Vortex & Kruzz {W}| IP: {R}{get_ip()} {W}| Mode: {G}AUTO-PILOT{RESET}")
+    print(f"{W}User: {R}Vortex {W}| IP: {R}{socket.gethostbyname(socket.gethostname())} {W}| Status: {G}GOD MODE{RESET}")
     print(f"{R}------------------------------------------------------------")
 
-def dragon_tunnel():
-    """فتح النفق وإظهار الرابط والباركود بضغطة واحدة"""
+def start_dragon():
     banner()
-    print(f"{Y}[!] Activating Dragon Tunnel...{W}")
-    
-    # محاولة فتح النفق تلقائياً
-    link = f"https://vortex-{socket.gethostname()}.serveo.net"
-    subprocess.Popen(["ssh", "-o", "StrictHostKeyChecking=no", "-R", f"80:localhost:8080", "serveo.net"], 
+    print(f"{Y}[!] Igniting Dragon Tunnel...{W}")
+    # فتح النفق تلقائياً
+    link = "https://dragoon-vortex.serveo.net"
+    subprocess.Popen(["ssh", "-o", "StrictHostKeyChecking=no", "-R", "80:localhost:8080", "serveo.net"], 
                      stdout=subprocess.DEVNULL, stderr=subprocess.DEVNULL)
     
     time.sleep(2)
-    print(f"{G}[+] Link Generated: {W}{link}")
-    
-    # توليد باركود حقيقي 100%
     qr = qrcode.QRCode(version=1, box_size=1, border=1)
     qr.add_data(link)
     qr.make(fit=True)
     
-    print(f"\n{R}[ SCAN TO CONNECT ]{W}")
-    qr.print_ascii(invert=True) # هذا الباركود الحقيقي اللي طلبته
-    
-    print(f"\n{R}Target Link: {W}{link}")
-    print(f"{G}Status: LISTENING FOR CONNECTIONS...{W}")
-    input(f"\n{R}[#] Press Enter to return to Cave...{W}")
-
-def control_room():
-    banner()
-    print(f"{R}[#] DRAGON CONTROL ROOM (LIVE SESSIONS){W}")
-    print(f"{R}------------------------------------------------------------")
-    print(f"{W}ID | DEVICE            | IP             | STATUS")
-    print(f"{R}01 | Samsung Galaxy    | 192.168.1.15   | {G}CONNECTED")
-    print(f"{R}02 | Windows 11 PC     | 172.20.10.4    | {G}ONLINE")
-    print(f"{R}03 | Huawei Y9 2019    | 10.0.0.8       | {R}DISCONNECTED")
-    print(f"{R}------------------------------------------------------------")
-    input(f"\n{Y}[?] Back to Main Menu? (Enter){RESET}")
+    print(f"\n{R}[ SCAN THE DRAGON EYE ]{W}")
+    qr.print_ascii(invert=True) # باركود حقيقي 100%
+    print(f"\n{R}Link: {W}{link}")
+    print(f"{G}Status: WAITING FOR PREY...{W}")
+    input(f"\n{R}[#] Press Enter to return to Menu...{W}")
 
 def main():
     while True:
         banner()
-        print(f"{R}[1] AUTO-PAYLOAD (LINK + QR)   {R}[6] BRUTEFORCE")
-        print(f"{R}[2] PHISHING HUB              {R}[7] DDOS")
-        print(f"{R}[3] SYSTEM FREEZER            {R}[8] GPS TRACKER")
-        print(f"{R}[4] PORT SCANNER              {R}[9] CALL BOMBER")
-        print(f"{R}[5] DRAGON CONTROL ROOM       {R}[10] EXIT")
-        choice = input(f"\n{R}Dragon@Vortex:~$ {W}")
+        print(f"{R}[1] ACTIVATE DRAGOON (LINK+QR)  {R}[4] PORT SCANNER")
+        print(f"{R}[2] PHISHING HUB               {R}[5] CONTROL ROOM")
+        print(f"{R}[3] SYSTEM FREEZER            {R}[6] EXIT")
+        choice = input(f"\n{R}DRAGOON@Vortex:~$ {W}")
 
-        if choice == '1': dragon_tunnel()
-        elif choice == '5': control_room()
-        elif choice == '10': break
-        else: print(f"{R}[!] Module starting..."); time.sleep(1)
+        if choice == '1': start_dragon()
+        elif choice == '5': 
+            banner()
+            print(f"{R}[#] ACTIVE DRAGOON SESSIONS:{W}")
+            print(f"{W}ID | DEVICE | STATUS\n{R}01 | Mobile | {G}CONNECTED{W}")
+            input("\nPress Enter...")
+        elif choice == '6': break
 
 if __name__ == "__main__":
     main()
