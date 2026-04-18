@@ -7,7 +7,7 @@ BOLD, RESET = '\033[1m', '\033[0m'
 def auto_setup():
     """محرك التجهيز الذاتي: بناء الترسانة بالكامل 100%"""
     os.system('clear')
-    print(f"{R}{BOLD}[!] OMEGA ENGINE IS WAKING UP...{W}")
+    print(f"{R}{BOLD}[!] INFERNAL ENGINE IS WAKING UP...{W}")
     # تنصيب الأدوات الحقيقية في نظام الكالي
     os.system('sudo apt update && sudo apt install -y sqlmap metasploit-framework nmap hping3 hydra aircrack-ng curl wget unzip')
     # تنصيب مكتبات البايثون اللازمة للأدوات المتطورة
@@ -16,30 +16,27 @@ def auto_setup():
 
 def omega_banner():
     os.system('clear')
-    # شعار التنين العملاق والفخم (The Massive Dragon)
+    # شعار شيطان الجحيم العملاق والفخم (The Massive Arch-Demon)
     print(f"""{R}{BOLD}
-              {R}             ____                      ____
-              {R}            /    \____________________/    \\
-              {R}           /      \                  /      \\
-              {R}          /    ____\________________/____    \\
-              {Y}         /    /    \      ||      /    \    \\
-              {Y}        /    /      \     ||     /      \    \\
-              {R}       /____/        \____||____/        \____\\
-              {R}      |      __________( @  @ )__________      |
-              {Y}      |     /           \ VV /           \     |
-              {Y}      |    /             \  /             \    |
-              {R}      |   /               \/               \   |
-              {R}      |  /        /|      ||      |\        \  |
-              {Y}      | /        / |      ||      | \        \ |
-              {Y}      |/        /  |______||______|  \        \|
-              {R}      /        /   |      ||      |   \        \\
-              {R}     /________/    |______||______|    \________\\
-              {Y}                   |      ||      |
-              {Y}                   |______||______|
+                 {R}   ,---.           ,---.
+                 {R}  / /"`. \ _ ___ _ / /"`. \\
+                 {Y}  \ \_/ / /      \ \_/ /
+                 {Y}   \___/ /        \___/
+                 {R}        /|   ____   |\
+                 {R}       / |  /    \  | \\
+                 {Y}      /  | |  @  @ |  |  \\
+                 {Y}     /___| | \ VV / |  |___\\
+                 {R}    |      \  \  /  /      |
+                 {R}    |       \__\/__/       |
+                 {Y}    |   |\           /|    |
+                 {Y}    |   | \   ---   / |    |
+                 {R}    |___|  \_______/  |____|
+                 {R}         \   |   |   /
+                 {Y}          \__|___|__/
     {W}____________________________________________________________________
     {W}             SUPREME LORDS: {R}VORTEX {W}& {R}KRUZZ{R}
     {W}____________________________________________________________________
-    {R} [ MODE: {G}OMNIPOTENT {R}] [ LEVEL: {G}26.0 {R}] [ STATUS: {G}ULTIMATE WAR {R}]
+    {R} [ MODE: {G}INFERNAL {R}] [ LEVEL: {G}26.0 {R}] [ STATUS: {G}ULTIMATE WAR {R}]
     {W}____________________________________________________________________
     {W}CORE: {G}STABLE {W}| SHIELD: {G}ACTIVE {W}| OPERATOR: {R}VORTEX {W}| TARGET: {R}GLOBAL
     """)
@@ -78,7 +75,7 @@ def main():
     while True:
         omega_banner()
         # عرض جميع المميزات التي طلبتها
-        print(f"{R}[1] {W}DRAGON TUNNEL & QR EYE      {R}[11]{W}SQL INJECTION (SQLMap)")
+        print(f"{R}[1] {W}INFERNAL TUNNEL & EYE      {R}[11]{W}SQL INJECTION (SQLMap)")
         print(f"{R}[2] {W}TROJAN APK GEN (Msfvenom)    {R}[12]{W}PHISHING HUB (PES/KONAMI)")
         print(f"{R}[3] {W}METASPLOIT HUB (Listener)    {R}[13]{W}SOCIAL MEDIA BRUTE FORCE")
         print(f"{R}[4] {W}DYNAMIC C2 CONTROL ROOM      {R}[14]{W}OTP/2FA CODE GUESSER")
@@ -86,7 +83,7 @@ def main():
         print(f"{R}[6] {W}DDOS ATTACK (SYN FLOOD)      {R}[16]{W}IP GEOLOCATION (Precise)")
         print(f"{R}[7] {W}ANONYMOUS CALL/SMS BOMBER    {R}[17]{W}WIFI JAMMER & CRACKER")
         print(f"{R}[8] {W}BROWSER HOOK (BeEF-XSS)      {R}[18]{W}SYSTEM DATA WIPER")
-        print(f"{R}[9] {W}DRAGON SHIELD (Defense)      {R}[19]{W}SATELLITE INTERCEPT")
+        print(f"{R}[9] {W}INFERNAL SHIELD (Defense)    {R}[19]{W}SATELLITE INTERCEPT")
         print(f"{R}[10]{W}VORTEX WIKI (AR/EN)         {R}[20]{W}SERVER ROOT ACCESS")
         print(f"{R}[0] {W}TERMINATE WAR MACHINE")
         
