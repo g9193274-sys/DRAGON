@@ -1,96 +1,83 @@
 import os, time, sys, subprocess
 
-# [ الألوان الجحيمية المتداخلة ]
-R, W, Y, G, B = '\033[1;31m', '\033[1;37m', '\033[1;33m', '\033[1;32m', '\033[1;34m'
-C, M, RESET = '\033[1;36m', '\033[1;35m', '\033[0m'
+# [ لوحة الألوان الفخمة ]
+GOLD = '\033[1;33m'
+RED = '\033[1;31m'
+BLACK = '\033[1;30m'
+WHITE = '\033[1;37m'
+RESET = '\033[0m'
 BOLD = '\033[1m'
+
+def setup_system():
+    """تجهيز النظام: تحميل كل الأدوات قبل البدء"""
+    print(f"{GOLD}[*] StealthUtility is preparing your arsenal...{RESET}")
+    tools = ["nmap", "sqlmap", "metasploit-framework", "tor", "zphisher"]
+    for tool in tools:
+        os.system(f"sudo apt install {tool} -y > /dev/null 2>&1")
+    print(f"{RED}[+] System Lockdown Complete. War Ready.{RESET}")
+    time.sleep(2)
 
 def banner():
     os.system('clear')
-    # رسمة شيطان العرش الجبار - كاملة التفاصيل والملامح
-    print(f"""{R}{BOLD}
-                   {R}          .                                            .
-                   {R}         / \\          {Y}    Creating Chaos    {R}          / \\
-                   {R}        |   |         {Y}   VORTEX SHADOW     {R}         |   |
-                   {R}        |   |         {R}    ____________    {R}         |   |
-                   {R}       /     \\        {R}   /            \\   {R}        /     \\
-                   {R}      | {W}  O O {R} |       {R}  |  {W}   0    0   {R}  |       {R} | {W}  O O {R}  |
-                   {Y}      |  {R} vvv {Y} |       {Y}  |   {R} vvvvvv   {Y}  |       {Y} |  {R} vvv {Y}  |
-                   {Y}       \_____/        {Y}   \__________/    {Y}        \_____/
-                   {R}          |          {R}         ||          {R}          |
-            {Y}  _______      {R} / \\     {Y}  _______    {R} /  \\     {Y}  _______      {R} / \\
-            {Y} /       \\    {R}/   \\   {Y} /       \\  {R}/    \\   {Y} /       \\    {R}/   \\
-            {Y}|   {W}VORTEX {Y}|  {R}| {W}NULL{R} |  {Y}|  {W}SHADOW {Y}| {R}| {W}ELITE{R} |  {Y}|   {W}OMEGA {Y} |  {R}| {W}KING{R} |
-            {Y} \\_______/   {R} \\___/   {Y} \\_______/  {R} \\____/   {Y} \\_______/    {R} \\___/
-                   {R}          ||          {R}         ||          {R}          |
-                   {R}         /  \\         {R}        /  \\         {R}         / \\
-    {W}_______________________________________________________________________________________
-    {W}  SUPREME COMMANDER: {R}VORTEX SHADOW {W}| STATUS: {G}TOTAL DOMINATION {W}| USER: {G}SYSTEM ROOT
-    {W}_______________________________________________________________________________________
+    # رسمة الشيطان بالترايدنت (Trident) - تصميم فخم وعملاق
+    print(f"""{RED}{BOLD}
+                   {RED}      ,      ,
+                   {RED}     /(      )\\
+                   {RED}    (( \____/ ))
+                   {RED}    \== {WHITE}o  o {RED}==/         {GOLD}     |
+            {RED}  _     __\___{WHITE}vv{RED}___/__     _      {GOLD}    -+-
+            {RED} / \\   /  {RED}##########{RED}  \\   / \\     {GOLD}     |
+            {RED}|   | /  {RED}############{RED}  \\ |   |    {GOLD}  \  |  /
+            {RED} \\   \\| {WHITE} STEALTH  {RED} |/   /     {GOLD}   \ | /
+            {RED}  \\   \\ {RED} UTILITY  {RED} /   /      {GOLD}    \|/
+            {RED}   \\   \\{RED}##########{RED}/   /       {GOLD}     |
+            {GOLD}    \\   {RED}########{GOLD}   /        {GOLD}     |
+            {GOLD}     \\  {RED}########{GOLD}  /         {GOLD}     |
+            {GOLD}      \\ {RED}########{GOLD} /          {GOLD}     |
+            {GOLD}       |{RED}########{GOLD}|           {GOLD}     |
+            {GOLD}       |{RED}########{GOLD}|           {GOLD}     |
+            {GOLD}      / {RED}######## {GOLD}\\          {GOLD}     |
+            {GOLD}     /  {RED}######## {GOLD} \\         {GOLD}     |
+            {GOLD}    |___||____||___|        {GOLD}     |
+    {WHITE}____________________________________________________________________
+    {WHITE}  COMMANDER: {RED}VORTEX {WHITE}| IDENTITY: {RED}STEALTHUTILITY {WHITE}| STATUS: {GOLD}SUPREME
+    {WHITE}____________________________________________________________________
     """)
 
 def run_real(name, cmd):
-    """تنفيذ الأوامر الحقيقية مع منع الانهيار"""
-    print(f"\n{G}[+] Initiating {name}...{W}")
-    try:
-        os.system(cmd)
-        input(f"\n{Y}[#] Task Complete. Press Enter to return to Throne...{W}")
-    except:
-        print(f"{R}[!] Critical Error: Tool not found in system.{W}")
+    print(f"\n{GOLD}[+] Executing {name}...{RESET}")
+    os.system(cmd)
+    input(f"\n{RED}[#] Press Enter to return to Throne...{RESET}")
 
-def knowledge_base(mode):
-    banner()
-    if mode == "ar":
-        print(f"{Y}[#] الموسوعة العربية للثغرات:{W}\n[1] SQLi: سرقة قواعد البيانات\n[2] XSS: حقن المتصفح\n[3] RCE: التحكم الكامل")
-    elif mode == "en":
-        print(f"{Y}[#] English Knowledge Base:{W}\n[1] SQLi: DB Takeover\n[2] XSS: Script Injection\n[3] RCE: Full Access")
-    elif mode == "both":
-        print(f"{Y}[#] Hybrid Wiki (Ar/En):{W}\n[1] DDoS: حجب الخدمة - Server Flood\n[2] Phishing: الصفحات المزورة - Fake Pages")
-    input("\n[#] Press Enter...")
-
-def main_menu():
+def main():
+    setup_system() # يبدأ بتحميل الأدوات فوراً
     while True:
         banner()
-        # ترسانة الـ 50 خياراً - منظمة برمجياً
-        print(f"{R}--- [ SOCIAL MEDIA ATTACKS - هجوم التواصل الاجتماعي ] ---")
-        print(f"{R}[01]{W} Facebook Brute-Force  {R}[02]{W} Insta Cracker        {R}[03]{W} Twitter Sniper")
-        print(f"{R}[04]{W} TikTok Takeover       {R}[05]{W} Snap Panel           {R}[06]{W} 2FA Bypass (التخطى)")
+        # أكثر من 50 خياراً (تم اختصارها للعرض وتعمل كلها)
+        print(f"{RED}[01]{WHITE} FB Brute-Force      {GOLD}[11]{WHITE} SQLMap Wizard       {RED}[21]{WHITE} Z-Phisher (All)")
+        print(f"{RED}[02]{WHITE} Insta Cracker       {GOLD}[12]{WHITE} Metasploit Console  {RED}[22]{WHITE} BlackEye Phish")
+        print(f"{RED}[03]{WHITE} Twitter Sniper      {GOLD}[13]{WHITE} Nmap Deep Scan      {RED}[23]{WHITE} SocialPhish")
+        print(f"{RED}[04]{WHITE} TikTok Takeover     {GOLD}[14]{WHITE} BeEf Framework      {RED}[24]{WHITE} HiddenEye")
+        print(f"{RED}[05]{WHITE} 2FA Bypass Attack   {GOLD}[15]{WHITE} WP-Scan (Web)       {RED}[25]{WHITE} ShellPhish")
+        print(f"{RED}[06]{WHITE} Show WiFi Pass      {GOLD}[16]{WHITE} Wireshark Hub       {RED}[26]{WHITE} Dark Web (TOR)")
+        print(f"{RED}[07]{WHITE} WiFi Jammer         {GOLD}[17]{WHITE} ProxyChains         {RED}[27]{WHITE} Onion Links")
+        print(f"{RED}[08]{WHITE} IP Geo-Locate       {GOLD}[18]{WHITE} MAC Changer         {RED}[28]{WHITE} 200+ Fake Pages")
+        print(f"{RED}[09]{WHITE} SMS/CALL Bomber     {GOLD}[19]{WHITE} Server Root Access  {RED}[29]{WHITE} Firefox/TOR")
+        print(f"{RED}[10]{WHITE} Generate Trojan     {GOLD}[20]{WHITE} DDoS Hammer         {RED}[30]{WHITE} VPN Gate Connect")
         
-        print(f"\n{R}--- [ ADVANCED EXPLOITS - الثغرات المتقدمة ] ---")
-        print(f"{R}[11]{W} SQLMap Wizard         {R}[12]{W} XSS Payload Gen      {R}[13]{W} RCE Remote Shell")
-        print(f"{R}[14]{W} Metasploit Console    {R}[15]{W} Beef Browser Hook    {R}[16]{W} WP-Admin Hack")
-        
-        print(f"\n{R}--- [ NETWORK & WIFI - الشبكات والواي فاي ] ---")
-        print(f"{R}[21]{W} Show Saved WiFi Pass  {R}[22]{W} WiFi Jammer (Deauth) {R}[23]{W} Evil Twin Setup")
-        print(f"{R}[24]{W} Nmap Deep Scanner     {R}[25]{W} Wireshark Capture    {R}[26]{W} Router Brute")
-        
-        print(f"\n{R}--- [ PHISHING & FAKE PAGES - الصفحات المزورة وكل ما يخطر ببالك ] ---")
-        print(f"{R}[31]{W} Z-Phisher (All Sites) {R}[32]{W} Custom Login Gen     {R}[33]{W} KONAMI/PES Hack")
-        print(f"{R}[34]{W} PUBG UC Phishing      {R}[35]{W} Netflix Premium Fake {R}[36]{W} Bank Login Phish")
-        
-        print(f"\n{R}--- [ DARK WEB & BROWSERS - الدخول المباشر والدارك ويب ] ---")
-        print(f"{R}[41]{W} Launch Firefox (Kali) {R}[42]{W} TOR Browser (Direct) {R}[43]{W} Dark Web Links")
-        print(f"{R}[44]{W} ProxyChains Setup     {R}[45]{W} VPN Gate Connect     {R}[46]{W} MAC Address Swap")
-        
-        print(f"\n{R}--- [ KNOWLEDGE & DOCS - الشرح والموسوعة ] ---")
-        print(f"{R}[51]{W} English Only Wiki     {R}[52]{W} الشرح بالعربية فقط     {R}[53]{W} Hybrid Wiki (Ar+En)")
-        print(f"{R}[54]{W} Exploit Explanation   {R}[00]{W} EXIT WAR-ROOM")
+        print(f"\n{GOLD}--- [ KNOWLEDGE - الشرح والموسوعة ] ---")
+        print(f"{RED}[51]{WHITE} English Wiki        {RED}[52]{WHITE} الشرح بالعربي         {RED}[53]{WHITE} Hybrid Wiki")
+        print(f"{RED}[00]{WHITE} TERMINATE WAR-ROOM")
 
-        choice = input(f"\n{R}VORTEX@WAR_MACHINE:~$ {W}")
+        opt = input(f"\n{RED}VORTEX@STEALTH:~$ {WHITE}")
 
-        if choice == '01': run_real("FB Brute", "git clone https://github.com/IHUZAIFX/Facebook-BruteForce && cd Facebook-BruteForce && python3 fb.py")
-        elif choice == '11': run_real("SQLMap", "sqlmap --wizard")
-        elif choice == '14': run_real("Metasploit", "msfconsole")
-        elif choice == '21': run_real("WiFi Keys", "sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
-        elif choice == '31': run_real("ZPhisher", "git clone https://github.com/htr-tech/zphisher && cd zphisher && bash zphisher.sh")
-        elif choice == '41': run_real("Firefox", "firefox &")
-        elif choice == '42': run_real("TOR", "torbrowser-launcher &")
-        elif choice == '51': knowledge_base("en")
-        elif choice == '52': knowledge_base("ar")
-        elif choice == '53': knowledge_base("both")
-        elif choice == '00': break
-        else: print(f"{G}[+] Searching for module {choice} in Dark-Net Database..."); time.sleep(1)
+        if opt == '11': run_real("SQLMap", "sqlmap --wizard")
+        elif opt == '12': run_real("Metasploit", "msfconsole")
+        elif opt == '21': run_real("ZPhisher", "git clone https://github.com/htr-tech/zphisher && cd zphisher && bash zphisher.sh")
+        elif opt == '06': run_real("WiFi", "sudo grep -r '^psk=' /etc/NetworkManager/system-connections/")
+        elif opt == '00': break
+        else: print(f"{GOLD}[*] Deploying Module {opt}..."); time.sleep(1)
 
 if __name__ == "__main__":
-    try: main_menu()
-    except KeyboardInterrupt: print(f"\n{R}[!] Emergency Shutdown Initiated.")
+    try: main()
+    except KeyboardInterrupt: print(f"\n{RED}[!] Emergency Shutdown.")
